@@ -5,6 +5,7 @@ import { AiFillWarning, AiOutlineSend, AiOutlineUnorderedList } from "react-icon
 const mock = [
 { name: "Update user", stepNumber: 2, hasError: true},
 { name: "Merge Employees with Demographics", stepNumber: 1, listCount: 100},
+{ stepNumber: 3, listCount: 100},
 //bad data
 {}
 ] 
@@ -12,7 +13,7 @@ const mock = [
 function App() {
   const [selected, setSelected] = useState<number>()
   // sorting by stepNumber to be sure the order is correct
-  const sortedSteps = mock.filter((i) => i.stepNumber && i.name)
+  const sortedSteps = mock.filter((i) => i.stepNumber)
     .sort((a, b) => a.stepNumber - b.stepNumber)
 
   // TODO add box-shadow
@@ -28,7 +29,7 @@ function App() {
             <div className="step-number">
               {item.stepNumber}
             </div>
-            <p>{item.name}</p>
+            <p>{item.name || "Unknown"}</p>
           </div>
           {item.listCount && (
             <div className="list-count">
