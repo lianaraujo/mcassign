@@ -2,18 +2,17 @@ import { useState } from 'react'
 import './App.css'
 import { AiFillWarning, AiOutlineSend, AiOutlineUnorderedList } from "react-icons/ai";
 
-const mock = [
-{ name: "Update user", stepNumber: 2, hasError: true},
-{ name: "Merge Employees with Demographics", stepNumber: 1, listCount: 100},
-{ stepNumber: 3, listCount: 100},
-//bad data
-{}
-] 
+type Step = {
+  name?: string
+  stepNumber?: number
+  listCount?: number
+  hasError?: boolean
+}
 
-function App() {
+function App({data}: {data: Step[]}) {
   const [selected, setSelected] = useState<number>()
   // sorting by stepNumber to be sure the order is correct
-  const sortedSteps = mock.filter((i) => i.stepNumber)
+  const sortedSteps = data.filter((i) => i.stepNumber)
     .sort((a, b) => a.stepNumber - b.stepNumber)
 
   // TODO add box-shadow
