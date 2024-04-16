@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import './App.css'
 import { AiFillWarning, AiOutlineSend, AiOutlineUnorderedList } from "react-icons/ai";
 
@@ -20,8 +20,8 @@ function App({data}: {data: Step[]}) {
     <>
     {sortedSteps.map((item, index) => {
       return (
-      <>
-      <div className='item' key={item.stepNumber}>
+      <Fragment key={item.stepNumber}>
+      <div className='item'>
         <div onClick={() => setSelected(item.stepNumber)} className={`card ${selected === item.stepNumber ? "selected" : ""}`}>
           <div className="step">
             <AiOutlineSend />
@@ -40,7 +40,7 @@ function App({data}: {data: Step[]}) {
         <AiFillWarning className={`icon ${item.hasError ?"":"hidden"}`} />
       </div>
       {index < (sortedSteps.length - 1) && <Spacer />}
-      </>
+      </Fragment>
       )}
     )}
     </>
